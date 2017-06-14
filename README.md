@@ -1,9 +1,9 @@
-gcm [![Build Status](https://travis-ci.org/Aorioli/gcm.svg?branch=master)](https://travis-ci.org/Aorioli/gcm)[![Coverage Status](https://coveralls.io/repos/Aorioli/gcm/badge.svg?branch=master&service=github)](https://coveralls.io/github/Aorioli/gcm?branch=master)
+gcm [![Build Status](https://travis-ci.org/cosminrentea/gcm.svg?branch=master)](https://travis-ci.org/cosminrentea/gcm)[![Coverage Status](https://coveralls.io/repos/cosminrentea/gcm/badge.svg?branch=master&service=github)](https://coveralls.io/github/cosminrentea/gcm?branch=master)
 ===
 
 The Android SDK provides a nice convenience library ([com.google.android.gcm.server](https://github.com/google/gcm/tree/master/client-libraries/java/rest-client/src/com/google/android/gcm/server)) that greatly simplifies the interaction between Java-based application servers and Google's GCM servers. However, Google has not provided much support for application servers implemented in languages other than Java, specifically those written in the Go programming language. The `gcm` package helps to fill in this gap, providing a simple interface for sending GCM messages and automatically retrying requests in case of service unavailability.
 
-Documentation: http://godoc.org/github.com/Aorioli/gcm
+Documentation: [GoDoc](http://godoc.org/github.com/cosminrentea/gcm)
 
 Getting Started
 ---------------
@@ -11,19 +11,19 @@ Getting Started
 To install gcm, use `go get`:
 
 ```bash
-go get github.com/Aorioli/gcm
+go get github.com/cosminrentea/gcm
 ```
 
 Import gcm with the following:
 
 ```go
-import "github.com/Aorioli/gcm"
+import "github.com/cosminrentea/gcm"
 ```
 
 Sample Usage
 ------------
 
-Here is a quick sample illustrating how to send a message to the GCM server:
+Here is a quick sample illustrating how to send a message to the Firebase Cloud Messaging server:
 
 ```go
 package main
@@ -33,7 +33,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Aorioli/gcm"
+	"github.com/cosminrentea/gcm"
 )
 
 func main() {

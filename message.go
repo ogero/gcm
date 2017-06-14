@@ -25,7 +25,7 @@ type Message struct {
 	Notification          *Notification          `json:"notification,omitempty"`
 }
 
-// Notification containts all notification fields as defined in the GCM API reference
+// Notification contains all notification fields as defined in the GCM API reference
 type Notification struct {
 	Title        string `json:"title,omitempty"`
 	Body         string `json:"body,omitempty"`
