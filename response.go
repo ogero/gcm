@@ -1,19 +1,10 @@
 package gcm
 
-import "errors"
-
 type errorString string
 
 func (e errorString) Error() string {
 	return string(e)
 }
-
-var (
-	errorMap = map[int]error{
-		400: errors.New("Invalid JSON"),
-		401: errors.New("Authentication Error"),
-	}
-)
 
 const (
 	errorUnavailable = "Unavailable"

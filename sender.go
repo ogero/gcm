@@ -13,10 +13,6 @@ import (
 )
 
 const (
-	// Initial delay before first retry, without jitter.
-	backoffInitialDelay = 1000
-	// Maximum delay before a retry.
-	maxBackoffDelay = 1024000
 	// Http method for the api
 	apiMethod = "POST"
 )
@@ -110,8 +106,17 @@ func (c *Client) send(m *Message) (*Response, int, error) {
 	}
 	defer resp.Body.Close()
 
-	if err := errorMap[resp.StatusCode]; err != nil {
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
 		return nil, -1, err
+	}
+
+	if resp.StatusCode == 400 {
+		return nil, -1, errors.New(string(b))
+	}
+
+	if resp.StatusCode == 401{
+		return nil, -1, errors.New("Authentication Error")
 	}
 
 	if resp.StatusCode >= 500 {
@@ -119,11 +124,6 @@ func (c *Client) send(m *Message) (*Response, int, error) {
 			return nil, int(retryAfter), nil
 		}
 		return nil, 1, nil
-	}
-
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, -1, err
 	}
 
 	r := new(Response)
